@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji TV</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <h1>Emoji TV</h1>
+    <div class="living-room">
+       <div class="tv-set">
+           <iframe id="tvScreen" width="560" height="315"
+           src="https://www.youtube.com/embed/HvK-1iKQlIs?si=1fTE1TFGj0lJ0Z_W"
+           allow="autoplay;encrypted-media"></iframe>
+       </div>
+       <div class="remote">
+           <div class="remote-lable">REMOTE</div>
+           
+           <!-- Fixed OFF button -->
+           <button class="power-btn" onclick="changeChannel('')">OFF</button>
+           
+           <button class="channel-btn btn-1" onclick="changeChannel('https://www.youtube.com/embed/HvK-1iKQlIs?si=1fTE1TFGj0lJ0Z_W')">CH 1</button>
+           <button class="channel-btn btn-2" onclick="changeChannel('https://www.youtube.com/embed/wjsmX-R4Taw?si=vtSyzcLpSdlMbSVu')">CH 2</button>
+           <button class="channel-btn btn-3" onclick="changeChannel('https://www.youtube.com/embed/zeq0bnV2-zI?si=Hr5m6oV_QXcXQYvD')">CH 3</button>
+           
+           <p>Select Channel</p>
+       </div> 
+    </div>
+
+    <script>
+        function changeChannel(fullLink){
+            let tv = document.getElementById('tvScreen');
+            if(fullLink === ""){
+                tv.src = ""; // clears the screen when OFF is pressed
+            } else {
+                tv.src = fullLink + "?autoplay=1"; // plays channel automatically
+            }
+        }
+    </script>
+</body>
+</html>

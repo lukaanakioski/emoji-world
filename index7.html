@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The History of Emojis</title>
+    <link rel="stylesheet" href="style7.css">
+</head>
+<body>
+
+    <div class="story-card">
+        <div id="robot">🤖</div>
+        
+        <h1>The History of Emojis</h1>
+        
+        <p id="story-text">
+            Emojis began in Japan in the late 1990s when Shigetaka Kurita created the first set of 176 emojis for a mobile internet platform. These small digital icons were designed to help people express emotions, ideas, and information quickly in text messages. Over time, emojis became popular worldwide as smartphones and social media grew. In 2010, emojis were added to the Unicode Standard, allowing them to be used across different devices and platforms. Today, emojis are an important part of online communication, helping people add emotion, humor, and personality to their messages.
+        </p>
+        
+        <button id="talkBtn" onclick="startTalking()">Activate Billy 🚀</button>
+    </div>
+
+<script>
+function startTalking() {
+    let robot = document.getElementById('robot');
+    let textElement = document.getElementById('story-text');
+    let talkBtn = document.getElementById('talkBtn');
+    
+    // Grabs raw string text for the voice generator engine
+    let textToSpeak = textElement.innerText;
+    let speech = new SpeechSynthesisUtterance(textToSpeak);
+    
+    speech.rate = 1;
+    speech.pitch = 1.1; // Giving Billy a slightly higher, friendlier robot pitch
+
+    speech.onstart = () => {
+        robot.innerText = "🗣️"; // Changes into talking mouth emoji
+        robot.classList.add('speaking');
+        textElement.classList.add('reveal'); // Smoothly fades the text element in
+        talkBtn.innerText = "Billy is Speaking... 💬";
+        talkBtn.disabled = true;
+    };
+
+    speech.onend = () => {
+        robot.innerText = "🤖"; // Reverts back to standard robot face
+        robot.classList.remove('speaking');
+        talkBtn.innerText = "Activate Billy 🚀";
+        talkBtn.disabled = false;
+    };
+
+    speech.onerror = () => {
+        // Safe fallback cleanup if browser voice synth fails
+        robot.innerText = "🤖";
+        robot.classList.remove('speaking');
+        talkBtn.disabled = false;
+    };
+
+    window.speechSynthesis.speak(speech);
+}
+</script>
+</body>
+</html>

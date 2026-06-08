@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Emoji</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <!-- Game Control Center Card -->
+    <div class="game-container">
+        <h1>Catch the Emoji</h1>
+        <p id="message">Click the button to start the game</p>
+        
+        <div class="stats-box">
+            <p id="score">Score: 0</p>
+            <span class="multiplier">+2 points per catch</span>
+        </div>
+
+        <button id="startBtn">Start Game 🚀</button>
+        
+        <!-- Hidden until score hits 10 -->
+        <a href="index7.html" id="nextGameLink" class="kopce1">Go to Storyteller 🎉</a>
+    </div>
+
+    <!-- The Floating Target Emoji -->
+    <div id="emoji">😶</div>
+
+<script>
+    let emoji = document.getElementById('emoji');
+    let message = document.getElementById('message');
+    let startBtn = document.getElementById('startBtn');
+    let scoreDisplay = document.getElementById("score");
+    let nextGameLink = document.getElementById("nextGameLink");
+    
+    let score = 0;
+    let gameLoopTimeout; 
+
+    // Fun pool of emojis that will shuffle dynamically!
+    const emojiPool = ['😜', '🤪', '👻', '😎', '🥳', '👾', '🤡', '🦊', '🐱‍🏍', '🐒'];
+
+    function getRandomEmoji() {
+        return emojiPool[Math.floor(Math.random() * emojiPool.length)];
+    }
+
+    startBtn.addEventListener('click', function(){
+        startBtn.style.display = "none";
+        score = 0;
+        scoreDisplay.textContent = "Score: " + score;
+        nextGameLink.style.display = "none";
+        prepearGhost();
+    });
+
+    function prepearGhost(){
+        if (score >= 10) return;
+
+        message.innerText = "Get ready... the emoji is hiding...";
+        emoji.style.display = "none";
+        
+        let waitTime = Math.floor(Math.random() * 1000) + 500;
+        
+        clearTimeout(gameLoopTimeout);
+        gameLoopTimeout = setTimeout(showGhost, waitTime);
+    }
+
+    function showGhost(){
+        if (score >= 10) return;
+
+        // Change the look of the target dynamically each round
+        emoji.innerText = getRandomEmoji();
+
+        // Calculate screen boundaries safely keeping items in viewport
+        let maxX = window.innerWidth - 120;
+        let maxY = window.innerHeight - 120;
+        let randomX = Math.floor(Math.random() * Math.max(maxX, 50));
+        let randomY = Math.floor(Math.random() * Math.max(maxY, 50));
+        
+        emoji.style.left = randomX + 'px';
+        emoji.style.top = randomY + 'px'; 
+        emoji.style.display = 'block';
+        message.innerText = "Click it now! ⚡";
+
+        // Escape timer
+        clearTimeout(gameLoopTimeout);
+        gameLoopTimeout = setTimeout(() => {
+            if(emoji.style.display === 'block'){
+                emoji.style.display = 'none';
+                message.innerText = "Aww! It escaped! 🏃‍♂️";
+                setTimeout(prepearGhost, 800); 
+            }
+        }, 1200);
+    }
+
+    // Click listener
+    emoji.addEventListener("click", function(){
+        clearTimeout(gameLoopTimeout); 
+
+        score += 2;
+        scoreDisplay.textContent = "Score: " + score;
+        
+        emoji.style.display = 'none';
+        message.innerText = "Boom! You caught it! 💥";
+        
+        if (score >= 10) {
+            message.innerText = "Congratulations! You won! 🏆";
+            message.style.color = "#ffdf00";
+            nextGameLink.style.display = "inline-block"; 
+        } else {
+            setTimeout(prepearGhost, 500);
+        }
+    });
+</script>
+</body>
+</html>

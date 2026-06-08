@@ -1,0 +1,158 @@
+/* --- Reset & Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Prevents padding from breaking widths */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f0f12;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* --- Hero Section & Background --- */
+.hero-container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                url('https://png.pngtree.com/thumb_back/fh260/background/20230617/pngtree-a-cluster-of-cheerful-yellow-emojis-in-3d-render-laughing-and-image_3628856.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Modern Navigation Bar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(15, 15, 18, 0.6);
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #e4b430, #fecfef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+ul {
+    list-style: none;
+}
+
+#games {
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+#games:hover {
+    background: #a620ff;
+    box-shadow: 0 0 15px rgba(166, 32, 255, 0.6);
+}
+
+/* --- Main Content Layout --- */
+.hero-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Title Styling */
+.naslov h2 {
+    font-size: 4rem; /* Scalable font size */
+    font-weight: 900;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #fff 0%, #ffcf40 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Buttons Container --- */
+.kopce {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Allows buttons to wrap on tiny screens */
+    justify-content: center;
+}
+
+/* Individual Pill Buttons */
+.kopce1 {
+    color: #fff;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px; /* Modern pill shape */
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.kopce1:hover {
+    background-color: #20f4ff;
+    color: #000;
+    border-color: #20f4ff;
+    transform: translateY(-3px); /* Subtle lift up */
+    box-shadow: 0 10px 20px rgba(32, 244, 255, 0.4);
+}
+
+/* --- Responsive Media Queries --- */
+
+/* For Tablets and Mobile Screens (max-width: 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .naslov h2 {
+        font-size: 2.8rem; /* Shrinks the title slightly so it doesn't break lines awkwardly */
+    }
+
+    .kopce {
+        flex-direction: column; /* Stacks buttons vertically on mobile */
+        width: 100%;
+        max-width: 300px; /* Limits button size on mobile */
+    }
+
+    .kopce1 {
+        text-align: center;
+        padding: 12px 24px;
+    }
+}
+
+/* For Tiny Screens (max-width: 480px) */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .naslov h2 {
+        font-size: 2.2rem;
+    }
+}

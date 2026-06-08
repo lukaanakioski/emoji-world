@@ -1,0 +1,223 @@
+/* --- Modern CSS Architecture --- */
+:root {
+    --bg-dark: #0b0a14;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --accent-gradient: linear-gradient(45deg, #ff7b00, #ffae00);
+    --accent-glow: #ff9d00;
+    --text-main: #ffffff;
+    --text-muted: #b3b2be;
+    --nav-height: 70px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* --- Fixed Navbar Layout --- */
+nav {
+    height: var(--nav-height);
+    background: rgba(11, 10, 20, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Clean Hero Header --- */
+.main {
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    
+    /* Base background color */
+    background-color: #0b0a14;
+    
+    /* 1. This layer places a dark gradient mask to keep text readable */
+    background-image: 
+        linear-gradient(to bottom, rgba(11, 10, 20, 0.4), #0b0a14),
+        
+        /* 2. This layer draws a sharp, repeating 3D-style Smiley Emoji tile */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='25' fill='%23ffae00' fill-opacity='0.15'/%3E%3Ccircle cx='20' cy='23' r='3' fill='%23000' fill-opacity='0.15'/%3E%3Ccircle cx='40' cy='23' r='3' fill='%23000' fill-opacity='0.15'/%3E%3Cpath d='M20,38 Q30,48 40,38' stroke='%23000' stroke-width='3' stroke-linecap='round' fill='none' stroke-opacity='0.15'/%3E%3C/svg%3E");
+        
+    /* Tells the emoji to repeat seamlessly like wallpaper */
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.main h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    background: linear-gradient(180deg, #ffffff 0%, #deddeb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* --- Responsive Layout Grid --- */
+.container {
+    max-width: 1100px;
+    margin: -50px auto 80px;
+    padding: 0 24px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* --- Sleek Card Design --- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 174, 0, 0.3);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    flex-grow: 1; /* Pushes content down evenly */
+}
+
+/* --- Interactive Action Button --- */
+.btn-action {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    background: var(--accent-gradient);
+    color: #000000;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 174, 0, 0.2);
+}
+
+.btn-action:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 174, 0, 0.4);
+}
+
+/* --- Smooth Secret Fact Display --- */
+#fact-area {
+    margin-top: 20px;
+    padding: 12px;
+    background: rgba(255, 174, 0, 0.05);
+    border-left: 3px solid var(--accent-glow);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #ffd27f;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+    min-height: 48px; /* Holds container space open */
+}
+
+/* --- Centered Footer --- */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--card-border);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1.5px;
+}
+
+/* --- Media Queries for Perfect Mobile Scalability --- */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 5%;
+    }
+    
+    .main {
+        height: 45vh;
+    }
+
+    .main h1 {
+        font-size: 2.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .container {
+        margin: -30px auto 40px;
+    }
+    
+    .card {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main h1 {
+        font-size: 2.2rem;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr; /* Force crisp stack on small phones */
+    }
+}

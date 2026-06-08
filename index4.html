@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emojes - Junior Explorer</title>
+  <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+
+  <nav>
+    <div class="logo">😊 emojes</div>
+  </nav>
+
+  <header class="main">
+    <div class="hero-text">
+      <h1>Hello</h1>
+      <p class="subtitle">Explore the magic of positive vibes & colorful expressions</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <main class="grid">
+      <section class="card" id="Welcome">
+        <div class="card-icon">😊</div>
+        <p>Smiles make every day brighter and every moment a little more special. A simple emoji can say more than words sometimes. 🌟</p>
+      </section>
+
+      <section class="card" id="explore">
+        <div class="card-icon">🌈</div>
+        <p>Emojis bring color and fun into our messages. They help us share feelings, excitement, and happiness in a creative way. ✨</p>
+      </section>
+      
+      <section class="card" id="fun">
+        <div class="card-icon">🚀</div>
+        <p>Life is better with positive vibes and good energy. Keep shining, stay strong, and always spread kindness. 💖</p>
+        <button class="btn-action" onclick="getFact()">Reveal Secret 🌟</button>
+        <div id="fact-area"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    &copy; 2026 JUNIOR EXPLORER PROJECT BY LUKA
+  </footer>
+
+<script>
+  let facts = [
+    "Kindness makes every day better and every heart happier.",
+    "Dream big and never stop chasing your goals.",
+    "Happiness grows when you share it with others.",
+    "Music, laughter, and friends make life amazing.",
+    "Confidence and courage can help you achieve anything.",
+  ];
+
+  function getFact() {
+    let display = document.getElementById("fact-area");
+    let random = facts[Math.floor(Math.random() * facts.length)];
+    
+    // Smooth transition trigger
+    display.style.opacity = 0;
+    display.style.transform = "translateY(5px)";
+    
+    setTimeout(() => {
+      display.innerText = "✨ " + random;
+      display.style.opacity = 1;
+      display.style.transform = "translateY(0)";
+    }, 200);
+  }
+</script>
+</body>
+</html>
